@@ -1,1 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>景行沐风 · 个人主页</title>
+    <style>
+        :root {
+            --bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-secondary: #6b7280;
+            --accent: #3b82f6;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        /* 主站入口提示条 */
+        .main-site-hint {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .main-site-link {
+            font-weight: 600;
+            color: #1d4ed8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: gap 0.2s;
+        }
+        .main-site-link:hover {
+            gap: 0.5rem;
+            text-decoration: underline;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.4);
+            display: block;
+        }
+
+        .nickname {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .typing-container {
+            height: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            border-right: 2px solid var(--accent);
+            padding-right: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: var(--accent);
+            }
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.8rem;
+            text-align: left;
+            color: var(--text);
+        }
+
+        .project-card {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: left;
+            transition: background 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .project-card:hover {
+            background: #e5e7eb;
+        }
+
+        .project-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            transition: gap 0.2s;
+        }
+
+        .project-link:hover {
+            gap: 0.4rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--accent);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0 1.5rem;
+        }
+
+        .footer {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.2rem;
+            }
+
+            .nickname {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <!-- 主站入口提示 -->
+        <div class="main-site-hint">
+            📍 这是副站（静态展示）
+            <a href="https://jingxingmufeng.pythonanywhere.com" target="_blank" rel="noopener noreferrer" class="main-site-link">
+                访问主站 → jingxingmufeng.pythonanywhere.com
+            </a>
+        </div>
+
+        <!-- 头像 -->
+        <img 
+            src="https://i.imgs.ovh/2026/07/22/726808580bad819f8dc5d7dfe4c3753e.png" 
+            alt="景行沐风头像" 
+            class="avatar"
+            loading="lazy"
+        >
+
+        <h1 class="nickname">景行沐风</h1>
+
+        <!-- 打字机效果动态文字 -->
+        <div class="typing-container">
+            <span class="typing-text" id="typingText"></span>
+        </div>
+
+        <!-- 技能 / 身份标签 -->
+        <div class="tags">
+            <span class="tag">开源贡献者</span>
+            <span class="tag">全栈开发者</span>
+            <span class="tag">Minecraft 工具</span>
+            <span class="tag">技术爱好者</span>
+        </div>
+
+        <!-- 项目作品 -->
+        <h2 class="section-title">📌 开源项目</h2>
+        <div class="project-card">
+            <div class="project-name">
+                🚀 ZalithLauncher
+            </div>
+            <div class="project-desc">
+                一个强大的 Minecraft 启动器项目，致力于提供流畅的游戏启动与管理体验。
+            </div>
+            <a href="https://github.com/ZalithLauncher/ZalithLauncher2" target="_blank" rel="noopener noreferrer" class="project-link">
+                查看仓库 <span>→</span>
+            </a>
+        </div>
+
+        <!-- 联系方式 -->
+        <h2 class="section-title">📬 联系方式</h2>
+        <div class="contact-links">
+            <!-- GitHub -->
+            <a href="https://github.com/jxmfdzlyfk" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
+
+            <!-- 邮箱 -->
+            <a href="mailto:jxmfdzlyfk@163.com" class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M22 4L12 13 2 4"/>
+                </svg>
+                邮箱
+            </a>
+        </div>
+
+        <hr>
+
+        <p class="footer">© 2026 景行沐风 · 保持热爱，奔赴山海</p>
+    </main>
+
+    <script>
+        (function() {
+            const phrases = [
+                "保持热爱，奔赴山海。",
+                "用代码创造无限可能。",
+                "专注 Minecraft 生态工具开发。",
+                "开源让世界更美好。"
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 120;
+            const typingElement = document.getElementById('typingText');
+
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+
+                if (isDeleting) {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    typingSpeed = 1500;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    typingSpeed = 400;
+                } else {
+                    typingSpeed = isDeleting ? 60 : 100;
+                }
+
+                setTimeout(type, typingSpeed);
+            }
+
+            if (typingElement) {
+                setTimeout(type, 500);
+            }
+        })();
+    </script>
+</body>
+</html>
